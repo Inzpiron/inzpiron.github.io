@@ -25,6 +25,7 @@ ul, ol, li {
 }
 
 .item {
+    border: 1px solid green;
     display: inline-block;
 }
 

@@ -160,7 +160,8 @@ function open(td){
             td.innerHTML = '<img class="content" src="sprites/' + mapa[ii][jj] + '.png">';
         }
 
-        checkVictory();
+        if(!gameOver)
+            checkVictory();
     }
 }
 

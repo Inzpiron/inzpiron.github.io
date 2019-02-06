@@ -162,9 +162,6 @@ function open(td){
 
         checkVictory();
     }
-
-    if(gameOver)
-        alert('Você perdeu seu bunda mole');
 }
 
 function serumcuzao(_i, _j) {

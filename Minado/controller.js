@@ -5,7 +5,6 @@ var gameOver;
 var flagCount;
 
 function iniciaJogo() {
-    alert(getButtonFlag())
     reset();
     buildMap();
 }
@@ -132,6 +131,7 @@ function open(td){
         var id = td.id.toString().replace('cel-', '').split('-');
         var ii = parseInt(id[0]);
         var jj = parseInt(id[1]);
+        serumcuzao(ii, jj);
 
         visitado[ii][jj] = true;
 
@@ -142,6 +142,7 @@ function open(td){
 
         if (mapa[ii][jj] == 'B') {
             gameOver = true;
+            alert('Você perdeu seu bunda mole')
             for (let i = 0; i < 8; i++) {
                 for (let j = 0; j < 8; j++) {
                     if (mapa[i][j] == 'B') {
@@ -160,7 +161,36 @@ function open(td){
             td.innerHTML = '<img class="content" src="sprites/' + mapa[ii][jj] + '.png">';
         }
 
-        checkVictory();
+        //checkVictory();
+    }
+}
+
+function serumcuzao(_i, _j) {
+    var cont = 0;
+    for(var i = 0; i < 8; i++) {
+        for(var j = 0; j < 8; j++) {
+            if(!visitado[i][j] && !flagMap[i][j])
+                cont++;
+        }
+    }
+
+    if(cont <= 2) {
+        mapa[_i][_j] = 'B';
+        var ii = [-1, -1, -1,  0, 0,  1, 1, 1];
+        var jj = [-1,  0,  1, -1, 1, -1, 0, 1];
+
+        for(let k = 0; k < 8; k++) {
+            let y = _i + ii[k];
+            let x = _j + jj[k];
+
+            if (y >= 0 && y < 8 && x >= 0 && x < 8) {
+                mapa[y][x]++;
+                if(visitado[y][x]) {
+                    var td = document.getElementById('cel-' + y.toString() + '-' + x.toString());
+                    td.innerHTML = '<img class="content" src="sprites/' + mapa[y][x].toString() + '.png">';
+                }
+            }
+        }
     }
 }
 

@@ -142,7 +142,6 @@ function open(td){
 
         if (mapa[ii][jj] == 'B') {
             gameOver = true;
-            alert('Você perdeu seu bunda mole')
             for (let i = 0; i < 8; i++) {
                 for (let j = 0; j < 8; j++) {
                     if (mapa[i][j] == 'B') {
@@ -154,6 +153,7 @@ function open(td){
                     }
                 }
             }
+            alert('Você perdeu seu bunda mole')
         } else if (mapa[ii][jj] == '0') {
             td.innerHTML = '<img class="content" src="sprites/nothing.png">';
             flood_fill(ii, jj);

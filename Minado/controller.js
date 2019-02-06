@@ -153,7 +153,7 @@ function open(td){
                     }
                 }
             }
-            alert('Você perdeu seu bunda mole')
+            alert('Você perdeu seu bunda mole');
         } else if (mapa[ii][jj] == '0') {
             td.innerHTML = '<img class="content" src="sprites/nothing.png">';
             flood_fill(ii, jj);

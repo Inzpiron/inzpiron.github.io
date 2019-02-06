@@ -153,7 +153,6 @@ function open(td){
                     }
                 }
             }
-            alert('Você perdeu seu bunda mole');
         } else if (mapa[ii][jj] == '0') {
             td.innerHTML = '<img class="content" src="sprites/nothing.png">';
             flood_fill(ii, jj);
@@ -161,8 +160,11 @@ function open(td){
             td.innerHTML = '<img class="content" src="sprites/' + mapa[ii][jj] + '.png">';
         }
 
-        //checkVictory();
+        checkVictory();
     }
+
+    if(gameOver)
+        alert('Você perdeu seu bunda mole');
 }
 
 function serumcuzao(_i, _j) {
@@ -228,7 +230,7 @@ function checkVictory() {
         }
     }
 
-    if(visitCount + flagCount == 8*8) {
+    if(visitCount == (8*8 - 10)) {
         gameOver = true;
         alert('Você é do caralho!');
     }

@@ -37,9 +37,9 @@ ul, ol, li {
 }
 
 .content {
-    height: 64px;
-    width: 64px;
-    margin: 3px;
+    height: 32px;
+    width: 32px;
+    margin: 0.5px;
     transition: 0.1s;
 }
 

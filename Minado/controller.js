@@ -5,8 +5,14 @@ var gameOver;
 var flagCount;
 
 function iniciaJogo() {
+    alert(getButtonFlag())
     reset();
     buildMap();
+}
+
+function getButtonFlag() {
+    var btn = document.getElementById("botaoloco");
+    return btn.checked;
 }
 
 function buildMap() {
@@ -76,7 +82,7 @@ function reset() {
                     let y = i + ii[k];
                     let x = j + jj[k];
 
-                    if (y >= 0 && y < 8 && x >= 0 && x < 7) {
+                    if (y >= 0 && y < 8 && x >= 0 && x < 8) {
                         if (mapa[y][x] === 'B')
                             cont++;
                     }
@@ -91,7 +97,7 @@ function reset() {
 
 function mouseControllerClick(td, button) {
     if(!gameOver) {
-        if (button == 0)
+        if (button == 0 && getButtonFlag() == false)
             open(td);
         else {
             putFlag(td);
@@ -113,6 +119,7 @@ function putFlag(td) {
             flagCount++;
             td.innerHTML = '<img class="content" src="sprites/flag.png">';
             flagMap[ii][jj] = true;
+            checkVictory();
         }
     }
 
@@ -191,8 +198,10 @@ function checkVictory() {
         }
     }
 
-    if(visitCount + flagCount == 8*8)
+    if(visitCount + flagCount == 8*8) {
+        gameOver = true;
         alert('Você é do caralho!');
+    }
 }
 
 function generateRandomNumber(min , max)  {

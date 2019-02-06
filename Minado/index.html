@@ -25,12 +25,18 @@
 
     <table oncontextmenu="return false;" id="paidetudo" style="margin-left: auto; margin-right: auto;">
         <tr>
-            <td class = "td-loca" colspan="5" style="padding-bottom: 4px;">
-                <img onMouseDown="alert(event.button)" src="sprites/flag.png" width="64px"; style="margin-left: 2px;"><span id="flag-count"> x 10</span>
-            </td>
-            <td class = "td-loca" colspan="2" style="text-align: center">
-                <button  onclick="resetButton()" type="button" class="btn btn-primary"><i class="fas fa-redo-alt"></i>&nbsp;&nbsp;reset</button>
-            </td>
+            <td colspan="8">
+                <div class="btn-group-toggle" data-toggle="buttons" style="display: inline-block;">
+                    <label class="btn btn-warning active">
+                        <input id="botaoloco" type="checkbox" autocomplete="off">
+                        <img src="sprites/flag.png" width="32px;">
+                        <span id="flag-count">&nbsp;x 10</span>
+                    </label>
+                </div>
+                <button  onclick="resetButton()" type="button" class="btn btn-primary" style="display: inline-block;">
+                    <i style="font-size: 1.85em" class="fas fa-redo-alt"></i>
+                </button>
+            <td>
         </tr>
 
     </table>

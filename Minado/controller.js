@@ -131,7 +131,7 @@ function open(td){
         var id = td.id.toString().replace('cel-', '').split('-');
         var ii = parseInt(id[0]);
         var jj = parseInt(id[1]);
-        serumcuzao(ii, jj);
+       // serumcuzao(ii, jj);
 
         visitado[ii][jj] = true;
 

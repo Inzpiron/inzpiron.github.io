@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="estilo.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <title>Hello, world!</title>
+
+    <script type="text/javascript">
+        var _alert = false;
+        function copy_clipboard(id) {
+            showalert("Texto copiado", "alert-primary");
+            var copyText = id;
+            var textArea = document.createElement("textarea");
+            textArea.value = copyText.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("Copy");
+            textArea.remove();
+        }
+
+        function showalert(message,alerttype) {
+            if (!_alert) {
+                $('#alert_placeholder').append('<div id="alertdiv" class="alert ' + alerttype + '" style="cursor: pointer;" onclick="_alert=false" class="close" data-dismiss="alert"> <a href="#" class="close" data-dismiss="alert">&times;</a> <span>' + message + '</span></div>');
+                _alert = true;
+
+                setTimeout(function () { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+                    $("#alertdiv").remove();
+                    _alert = false;
+                }, 1000);
+            }
+        }
+
+        function atualizarVlrTotal(id){
+            var vlrtotal = document.getElementById("vlrtotal_"+id.toString());
+            var qtde = document.getElementById("qtde_" + id.toString()).value;
+            var vlrunit = document.getElementById("vlrunit_" + id.toString()).value;
+
+
+            vlrtotal.value = qtde * vlrunit;
+        }
+
+        function check() {
+            var table3 = document.getElementById("table3");
+            var table4 = document.getElementById("table4");
+        }
+    </script>
+</head>
+<body onload="check()" style="transform: scale(1);">
+    <div class="container-non-responsive mb-3">
+        <div id="alert_placeholder" class="text-center mt-3">
+        </div>
+        <div class="row">
+            <div class="col-9" id="accordion">
+                <div class="mycardhead" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <b>P3 soluções em Energia Elétrica LTDA</b>
+                </div>
+                <div id="collapseOne" class="collapse show p-1 mycardbody" aria-labelledby="headingOne" data-parent="#accordion">
+                    <table class="mr-auto ml-auto" style="font-size: 0.85rem">
+                        <tr>
+                            <td>
+                                <img style="display: inline-block" id="logo" src="teste/logo.png" width="96px" height="96px">
+                            </td>
+
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('e_cnpj'))" >
+                                                CNPJ: <span id="e_cnpj">07.284.600/0001-78</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('e_ie'))" >
+                                                IE: <span id="e_ie">255.801.351</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('e_endereco'))" >
+                                                <span id="e_endereco"> Rua Mal. Floriano Peixoto, 1100 - Dos Estados - INDAIAL - SC</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('e_fone'))" >
+                                                Fone: <span id="e_fone">(47) 3333-8077</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('e_contato'))" >
+                                                Contato: <span id="e_contato">Paulo/Compras</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-3" id="accordion1">
+                <div class="mycardhead" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <b>Ordem de compra</b>
+                </div>
+                <div id="collapseTwo" class="p-1 mycardbody collapse show" aria-labelledby="headingTwo" data-parent="#accordion1">
+                    <table class="mr-auto ml-auto">
+                        <tr>
+                            <td>
+                                <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('c_codigo'))" >
+                                    <h2 id="c_codigo">04497</h2>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('c_data'))" >
+                                    <h4 id="c_data">06/02/2019</h4>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-6" id="accordion2">
+                <div class="mycardhead" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <b>Fornecedor</b>
+                </div>
+                <div id="collapseThree" class="p-1 mycardbody collapse show" data-parent="#accordion2">
+                    <table id="table3" class="mr-auto ml-auto mt-auto mb-auto" style="font-size: 0.85rem;" width="100%;" >
+                        <tr>
+                            <td colspan="2">
+                                <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('f_nome'))" >
+                                    <span id="f_nome">Correa Materiais Elétricos LTDA</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%">
+                                <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('f_cnpj'))" >
+                                    CNPJ: <span id="f_cnpj">01.962.011/0001-15</span>
+                                </div>
+                            </td>
+                            <td width="50%">
+                                <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('f_ie'))" >
+                                    I.E: <span id="f_ie">253.716.284</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('f_endereco'))" >
+                                    <span id="f_endereco"> Rua 2 de Setembro, 3383 - ITOUPAVA NORTE 892384-350 - Blumenau / SC </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-6" id="accordion3">
+                <div class="mycardhead" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                    <b>Faturamento</b>
+                </div>
+                <div class="mycardbody collapse show" id="collapseFive" aria-labelledby="headingFive" data-parent="#according4" style="font-size: 0.75rem;">
+                    <table>
+                        <tr>
+                            <td width="10%" class="border-bottom text-center">
+                                <label class="mt-1" for="fat_data">Data prevista</label>
+                            </td>
+                            <td  width="5%" class="border-bottom border-right text-center pr-1">
+                                <input style="height: 25px;" type="date" class="form-control form-control-sm" id="fat_data">
+                            </td>
+                            <td width="10%" class="border-bottom text-center">
+                                <label for="fat_cond">Condição pagamento &nbsp;</label>
+                            </td>
+                            <td width="20%" class="border-bottom pr-1">
+                                <input style="height: 25px;" class="form-control form-control-sm" id="fat_cond">
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table>
+                        <tr>
+                            <td width="8%" class="text-center p-1">
+                                <label for="fat_vendedor">Vendedor&nbsp;</label>
+                            </td>
+                            <td width="30%" class="border-right p-1 border-left-0">
+                                <input style="height: 25px;" class="form-control form-control-sm" id="fat_vendedor">
+                            </td>
+                            <td class="text-center p-1">
+                                <label for="fat_email">E-mail&nbsp;</label>
+                            </td>
+                            <td class="pr-1">
+                                <input style="height: 25px;" type="email" class="form-control form-control-sm" id="fat_email">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-6" id="according4">
+                <div class="mycardhead" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                    <b>Faturar para</b>
+                </div>
+                <div id="collapseFour" class="p-1 mycardbody collapse show" aria-labelledby="headingFour" data-parent="#accordion3">
+                    <table id="table4" class="mr-auto ml-auto" style="font-size: 0.85rem;" width="100%">
+                        <tr>
+                            <td colspan="2">
+                                <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('f_cnpj'))" >
+                                    <span id="fat_nome">PEALE INDUSTRIA E COMERCIO DE MOVEIS S/A</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%">
+                                <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('e_cnpj'))" >
+                                    CNPJ: <span id="fat_cnpj">01.962.011/0001-15</span>
+                                </div>
+                            </td>
+                            <td width="50%">
+                                <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('e_ie'))" >
+                                    Situação: <span id="fat_isento">Isento</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('e_endereco'))" >
+                                    <span id="fat_endereco"> R ADOLFO SILVEIRA, 600 - ALEGRE 89.295-000 RIO NEGRINHO / Santa Catarina </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-6" id="accordion5">
+                <div class="mycardhead" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                    <b>Entrega</b>
+                </div>
+                <div id="collapseSix" class="p-1 mycardbody collapse show" aria-labelledby="headingFour" data-parent="#accordion3">
+                    <table  class="mr-auto ml-auto" style="font-size: 0.85rem;" width="100%">
+                        <tr>
+                            <td>
+                                <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('ent_prazo'))" >
+                                    Prazo de Entrega: <span id="ent_prazo">13/02/2019</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('ent_endereco'))" >
+                                    Endereço: <span id="ent_endereco">Rua 2 de Setembro, 3383 - ITOUPAVA NORTE</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="telement" align="center" onclick="copy_clipboard(document.getElementById('ent_transportadora'))" >
+                                    Transportadora: <span id="ent_transportadora">...</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-0 m-0 tablediv mr-auto ml-auto mt-3">
+            <table class="table-bordered table-striped table-condensed cf text-center" class="border border-primary" style="width: 100%;">
+                <thead>
+                <tr>
+                    <th scope="col">Cod</th>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Cod Fabricante</th>
+                    <th scope="col">UN.</th>
+                    <th scope="col">Qtde.</th>
+                    <th scope="col">Vlr. Unit.</th>
+                    <th scope="col">Vlr. Total</th>
+                </tr>
+                </thead>
+                <tbody style="font-size: 0.80rem;">
+                <tr>
+                    <th scope="row" class="text-center">02831</th>
+                    <td>TOMADA 2P+T 10A SEM PLACA PRM610 SCHNEIDER</td>
+                    <td>PRM610</td>
+                    <td>PÇ</td>
+                    <td width="7%">
+                        <input id="qtde_0" onchange="atualizarVlrTotal(0)" style="text-align: center; height: 25px;" type="number" class="form-control form-control-sm" value="2" min="0">
+                    </td>
+                    <td width="12%">
+                        <input id="vlrunit_0" onchange="atualizarVlrTotal(0)" style="text-align: center; height: 25px;" step="any" type="number" class="form-control form-control-sm" value="4,3550" min="0">
+                    </td>
+                    <td width="12%" class="text-center">
+                        <input id="vlrtotal_0" style="text-align: center; height: 25px;" type="number" class="form-control form-control-sm" disabled>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+</html>

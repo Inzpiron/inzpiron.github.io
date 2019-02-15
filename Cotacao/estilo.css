@@ -1,0 +1,126 @@
+#holder {
+    height: 50px;
+}
+#label {
+    margin-bottom: -50px;
+    padding-left: 5px;
+    padding-top: 2px;
+    position: absolute;
+    color: #ccc;
+}
+#input {
+    height: 100%;
+    padding-bottom: -10px;
+}
+
+.page-header {
+    height: 70px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.page-header2 {
+    height: 70px;
+    border-bottom: 1px solid lightgrey;
+    text-align: center;
+}
+
+.container-non-responsive {
+    /* Margin/padding copied from Bootstrap */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    /* Set width to your desired site width */
+    width:  992px;
+}
+
+.borda {
+    border: 1px solid black;
+}
+
+.bg-light2 {
+    background-color: #f8f9fa;
+}
+
+.bg-light3 {
+    background-color: #fbfcfc;
+}
+
+.telement {
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.telement:hover {
+    background-color: #f8f9fa;
+    border-color:  cornflowerblue;
+}
+
+.mycardhead {
+    cursor: pointer;
+    border: 1px solid silver;
+    border-radius: 10px 10px 0 0;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.mycardhead:hover {
+    border: 1px solid cornflowerblue;
+}
+
+.mycardbody {
+    border-left: 1px solid LIGHTGRAY;
+    border-right: 1px solid LIGHTGRAY;
+    border-bottom: 1px solid LIGHTGRAY;
+    border-radius: 0px 0px 5px 5px;
+    transition: 0.2s;
+}
+
+.mycardbody:hover {
+    border: 1px solid cornflowerblue;
+}
+
+.tablediv {
+    border: 1px solid white;
+    transition: 0.2s;
+    width: 100%;
+}
+
+.tablediv:hover{
+    border: 1px solid cornflowerblue;
+}
+
+.linha_tabela {
+    background: cornflowerblue;
+    bordr: 1px solid pink;
+}
+
+form {
+    margin: 20px auto;
+    width: 420px;
+}
+.form-row {
+    padding: 5px 10px;
+}
+label {
+    display: block;
+    margin: 3px 0;
+}
+.form-row input {
+    padding: 3px 1px;
+    width: 100%;
+}
+input.currency {
+    text-align: right;
+    padding-right: 15px;
+}
+.input-group .form-control {
+    float: none;
+}
+.input-group .input-buttons {
+    position: relative;
+    z-index: 3;
+}

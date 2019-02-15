@@ -50,3 +50,28 @@ ul, ol, li {
 .td-loca {
     border: 1px solid black;
 }
+
+
+.vtable {
+    border: 1px solid black;
+    display: table;
+    vertical-align: middle;
+}
+
+.vcell {
+    border-radius: 2px;
+    text-align: center;
+    display: inline-block;
+    margin-top: 0px;
+    margin: 1px;
+    font-size: 1.85em;
+    transition: 0.1s;
+}
+
+.vcell:hover {
+    font-size: 2em;
+}
+
+.vtablecontent {
+    text-align: center;
+}

@@ -1,12 +1,22 @@
-var mapa;
 var visitado;
 var flagMap;
 var gameOver;
 var flagCount;
+var app;
 
 function iniciaJogo() {
+    app = new Vue({
+        el: "#app",
+        data: {
+            mapa: '',
+            iconMap: '',
+            teste: 'em-svg em-bomb'
+        }
+    });
     reset();
     buildMap();
+
+    alert(app.iconMap);
 }
 
 function getButtonFlag() {
@@ -14,9 +24,68 @@ function getButtonFlag() {
     return btn.checked;
 }
 
+function reset() {
+    flagCount = 0;
+    gameOver = false;
+
+    app.mapa = new Array(8);
+    app.iconMap = new Array(8);
+
+    visitado = new Array(8);
+    flagMap = new Array(8);
+
+    for(let i = 0; i < 8; i++) {
+        visitado[i] = new Array(8).fill(false);
+        flagMap[i] = new Array(8).fill(false);
+
+        app.mapa[i] = new Array(8).fill('0');
+        app.iconMap[i] = new Array(8).fill("em-svg em-black_large_square");
+    }
+
+    for(let i = 0; i < 10; i++) {
+        let check = false;
+
+        while(check === false) {
+            let ii = generateRandomNumber(0, 7);
+            let jj = generateRandomNumber(0, 7);
+
+            if(app.mapa[ii][jj] === '0') {
+                app.mapa[ii][jj] = 'B';
+                check = true;
+            }
+        }
+    }
+
+    for(let i = 0; i < 8; i++) {
+        for(let j = 0; j < 8; j++) {
+            if(app.mapa[i][j] != 'B') {
+                let cont = 0;
+
+                var ii = [-1, -1, -1,  0, 0,  1, 1, 1];
+                var jj = [-1,  0,  1, -1, 1, -1, 0, 1];
+
+                for (let k = 0; k < 8; k++) {
+                    let y = i + ii[k];
+                    let x = j + jj[k];
+
+                    if (y >= 0 && y < 8 && x >= 0 && x < 8) {
+                        if (app.mapa[y][x] === 'B')
+                            cont++;
+                    }
+                }
+
+                app.mapa[i][j] = cont;
+            }
+        }
+    }
+
+    document.getElementById("flag-count").innerHTML = ' x ' + (10-flagCount).toString();
+}
+
 function buildMap() {
     for(let i = 0; i < 8; i++) {
         let tr = document.createElement("tr");
+        let vtable = document.getElementById("vtablecontent");
 
         for(var j = 0; j < 8; j++) {
             var td = document.createElement("td");
@@ -31,70 +100,18 @@ function buildMap() {
     }
 }
 
-function resetButton() {
-    reset();
-
-    for(var i = 0; i < 8; i++) {
-        for(var j = 0; j < 8; j++) {
-            var td = document.getElementById('cel-' + i.toString() + '-' + j.toString());
-            td.innerHTML = '<img class="content" src="sprites/unsolved.png">';
-        }
-    }
-}
-
-function reset() {
-    flagCount = 0;
-    gameOver = false;
-    mapa = new Array(8);
-    visitado = new Array(8);
-    flagMap = new Array(8);
-
-    for(let i = 0; i < 8; i++) {
-        mapa[i] = new Array(8).fill('0');
-        visitado[i] = new Array(8).fill(false);
-        flagMap[i] = new Array(8).fill(false);
-    }
-
-    for(let i = 0; i < 10; i++) {
-        let check = false;
-
-        while(check === false) {
-            let ii = generateRandomNumber(0, 7);
-            let jj = generateRandomNumber(0, 7);
-
-            if(mapa[ii][jj] === '0') {
-                mapa[ii][jj] = 'B';
-                check = true;
-            }
-        }
-    }
-
-    for(let i = 0; i < 8; i++) {
-        for(let j = 0; j < 8; j++) {
-            if(mapa[i][j] != 'B') {
-                let cont = 0;
-
-                var ii = [-1, -1, -1,  0, 0,  1, 1, 1];
-                var jj = [-1,  0,  1, -1, 1, -1, 0, 1];
-
-                for (let k = 0; k < 8; k++) {
-                    let y = i + ii[k];
-                    let x = j + jj[k];
-
-                    if (y >= 0 && y < 8 && x >= 0 && x < 8) {
-                        if (mapa[y][x] === 'B')
-                            cont++;
-                    }
-                }
-
-                mapa[i][j] = cont;
-            }
-        }
-    }
-    document.getElementById("flag-count").innerHTML = ' x ' + (10-flagCount).toString();
-}
 
 function mouseControllerClick(td, button) {
+    var id = td.id.toString().replace('cel_', '').split('_');
+    var ii = parseInt(id[1]);
+    var jj = parseInt(id[2]);
+
+
+    app.teste = "em-svg em-skull";
+    app.iconMap[ii][jj] = "leo";
+
+    alert(app.iconMap);
+
     if(!gameOver) {
         if (button == 0 && getButtonFlag() == false)
             open(td);
@@ -140,11 +157,11 @@ function open(td){
             document.getElementById("flag-count").innerHTML = ' x ' + (10-flagCount).toString();
         }
 
-        if (mapa[ii][jj] == 'B') {
+        if (app.mapa[ii][jj] == 'B') {
             gameOver = true;
             for (let i = 0; i < 8; i++) {
                 for (let j = 0; j < 8; j++) {
-                    if (mapa[i][j] == 'B') {
+                    if (app.mapa[i][j] == 'B') {
                         var trr = document.getElementById('cel-' + i.toString() + '-' + j.toString());
                         if(!flagMap[i][j])
                             trr.innerHTML = '<img class="content" src="sprites/bomb.png">';
@@ -153,11 +170,11 @@ function open(td){
                     }
                 }
             }
-        } else if (mapa[ii][jj] == '0') {
+        } else if (app.mapa[ii][jj] == '0') {
             td.innerHTML = '<img class="content" src="sprites/nothing.png">';
             flood_fill(ii, jj);
         } else {
-            td.innerHTML = '<img class="content" src="sprites/' + mapa[ii][jj] + '.png">';
+            td.innerHTML = '<img class="content" src="sprites/' + app.mapa[ii][jj] + '.png">';
         }
 
         if(!gameOver)
@@ -175,7 +192,7 @@ function serumcuzao(_i, _j) {
     }
 
     if(cont <= 2) {
-        mapa[_i][_j] = 'B';
+        app.mapa[_i][_j] = 'B';
         var ii = [-1, -1, -1,  0, 0,  1, 1, 1];
         var jj = [-1,  0,  1, -1, 1, -1, 0, 1];
 
@@ -184,10 +201,10 @@ function serumcuzao(_i, _j) {
             let x = _j + jj[k];
 
             if (y >= 0 && y < 8 && x >= 0 && x < 8) {
-                mapa[y][x]++;
+                app.mapa[y][x]++;
                 if(visitado[y][x]) {
                     var td = document.getElementById('cel-' + y.toString() + '-' + x.toString());
-                    td.innerHTML = '<img class="content" src="sprites/' + mapa[y][x].toString() + '.png">';
+                    td.innerHTML = '<img class="content" src="sprites/' + app.mapa[y][x].toString() + '.png">';
                 }
             }
         }
@@ -207,11 +224,11 @@ function flood_fill(i, j) {
                 visitado[y][x] = true;
                 var td = document.getElementById('cel-' + y.toString() + '-' + x.toString());
                 if(!flagMap[y][x]) {
-                    if (mapa[y][x] == '0') {
+                    if (app.mapa[y][x] == '0') {
                         td.innerHTML = '<img class="content" src="sprites/nothing.png">';
                         flood_fill(y, x);
-                    } else if (mapa[y][x] != 'B') {
-                        td.innerHTML = '<img class="content" src="sprites/' + mapa[y][x].toString() + '.png">';
+                    } else if (app.mapa[y][x] != 'B') {
+                        td.innerHTML = '<img class="content" src="sprites/' + app.mapa[y][x].toString() + '.png">';
                     }
                 }
             }
